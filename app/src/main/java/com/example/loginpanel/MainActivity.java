@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -27,6 +29,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         editTextUsername= findViewById(R.id.editTextUsername);
         editTextPassword= findViewById(R.id.editTextPassword);
+        editTextPassword.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode==KeyEvent.KEYCODE_ENTER && event.getAction()==KeyEvent.ACTION_DOWN){
+                    onClick(btnLogin);
+                }
+                return false;
+            }
+        });
 
         btnLogin=findViewById(R.id.btnLogin);
         btnSwitchActivity=findViewById(R.id.btnSwitchActivity);
@@ -63,6 +74,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
         }
+
+    }
+    public void rootTapped(View view){
+       try {
+           InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+           inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
 
     }
 }

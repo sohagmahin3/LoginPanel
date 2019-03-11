@@ -5,7 +5,8 @@
     android:id="@+id/layoutConstraints"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2E7D32">
+    android:background="#2E7D32"
+    android:onClick="userTapped">
 
     <EditText
         android:id="@+id/editTextEmail"
