@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLogin.setOnClickListener(MainActivity.this);
         btnSwitchActivity.setOnClickListener(MainActivity.this);
         if(ParseUser.getCurrentUser()!=null){
-            ParseUser.getCurrentUser().logOut();
+            //ParseUser.getCurrentUser().logOut();
+            transitionToSocialMediaActivity();
         }
 
     }
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void done(ParseUser user, ParseException e) {
                         if(user!=null && e==null){
                             FancyToast.makeText(MainActivity.this,"Login Successed!",FancyToast.SUCCESS,FancyToast.LENGTH_LONG,true).show();
+                            transitionToSocialMediaActivity();
                         }else {
                             FancyToast.makeText(MainActivity.this,e.getMessage().toString(),FancyToast.SUCCESS,FancyToast.LENGTH_LONG,true).show();
                         }
@@ -84,5 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            e.printStackTrace();
        }
 
+    }
+
+    public void transitionToSocialMediaActivity(){
+        Intent intent = new Intent(MainActivity.this,SocialMediaActivity.class);
+        startActivity(intent);
     }
 }

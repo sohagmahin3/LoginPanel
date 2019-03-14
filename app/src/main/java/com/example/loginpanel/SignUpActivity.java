@@ -47,7 +47,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         btnLogin.setOnClickListener(this);
 
         if (ParseUser.getCurrentUser()!=null){
-            ParseUser.getCurrentUser().logOut();
+            //ParseUser.getCurrentUser().logOut();
+            transitionToSocialMediaActivity();
         }
     }
 
@@ -70,6 +71,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         public void done(ParseException e) {
                             if (e == null) {
                                 FancyToast.makeText(SignUpActivity.this, appUser.get("username").toString() + " is Successful!", FancyToast.SUCCESS, FancyToast.LENGTH_LONG, true).show();
+                                transitionToSocialMediaActivity();
                             } else {
                                 FancyToast.makeText(SignUpActivity.this, e.getMessage(), FancyToast.ERROR, FancyToast.LENGTH_LONG, true).show();
                             }
@@ -94,5 +96,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             e.printStackTrace();
         }
 
+    }
+    public void transitionToSocialMediaActivity(){
+        Intent intent = new Intent(SignUpActivity.this,SocialMediaActivity.class);
+        startActivity(intent);
     }
 }
