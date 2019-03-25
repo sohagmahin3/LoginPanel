@@ -41,11 +41,32 @@ public class ProfileTab extends Fragment {
         updateButton = view.findViewById(R.id.updateButton);
         final ParseUser currentUser  = ParseUser.getCurrentUser();
 
-        edtProfileName.setText(currentUser.get("ProfileName")+"");
-        edtProfileBio.setText(currentUser.get("ProfileBio")+"");
-        edtProfileProfession.setText(currentUser.get("ProfileProfession")+"");
-        edtProfileHobbies.setText(currentUser.get("ProfileHobbies")+"");
-        edtProfileSport.setText(currentUser.get("ProfileSport")+"");
+        if(currentUser.get("ProfileName")==null)
+            edtProfileName.setText("");
+        else
+            edtProfileName.setText(currentUser.get("ProfileName")+"");
+
+        if(currentUser.get("ProfileBio")==null)
+            edtProfileBio.setText("");
+        else
+            edtProfileBio.setText(currentUser.get("ProfileBio")+"");
+
+
+        if(currentUser.get("ProfileProfession")==null)
+            edtProfileProfession.setText("");
+        else
+            edtProfileProfession.setText(currentUser.get("ProfileProfession")+"");
+
+        if(currentUser.get("ProfileHobbies")==null)
+            edtProfileHobbies.setText("");
+        else
+            edtProfileHobbies.setText(currentUser.get("ProfileHobbies")+"");
+
+        if(currentUser.get("ProfileSport")==null)
+            edtProfileSport.setText("");
+        else
+            edtProfileSport.setText(currentUser.get("ProfileSport")+"");
+
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
